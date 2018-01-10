@@ -1,34 +1,30 @@
-# SimpleMDE - Markdown Editor
-A drop-in JavaScript textarea replacement for writing beautiful and understandable Markdown. The WYSIWYG-esque editor allows users who may be less experienced with Markdown to use familiar toolbar buttons and shortcuts. In addition, the syntax is rendered while editing to clearly show the expected result. Headings are larger, emphasized words are italicized, links are underlined, etc. SimpleMDE is one of the first editors to feature both built-in autosaving and spell checking.
-
-[**Demo**](https://simplemde.com)
-
-[![Preview](http://i.imgur.com/zqWfJwO.png)](https://simplemde.com)
+# InscrybMDE - Markdown Editor
+A drop-in JavaScript textarea replacement for writing beautiful and understandable Markdown. The WYSIWYG-esque editor allows users who may be less experienced with Markdown to use familiar toolbar buttons and shortcuts. In addition, the syntax is rendered while editing to clearly show the expected result. Headings are larger, emphasized words are italicized, links are underlined, etc. InscrybMDE is one of the first editors to feature both built-in autosaving and spell checking.
 
 ## Why not a WYSIWYG editor or pure Markdown?
-WYSIWYG editors that produce HTML are often complex and buggy. Markdown solves this problem in many ways, plus Markdown can be rendered natively on more platforms than HTML. However, Markdown is not a syntax that an average user will be familiar with, nor is it visually clear while editing. In otherwords, for an unfamiliar user, the syntax they write will make little sense until they click the preview button. SimpleMDE has been designed to bridge this gap for non-technical users who are less familiar with or just learning Markdown syntax.
+WYSIWYG editors that produce HTML are often complex and buggy. Markdown solves this problem in many ways, plus Markdown can be rendered natively on more platforms than HTML. However, Markdown is not a syntax that an average user will be familiar with, nor is it visually clear while editing. In otherwords, for an unfamiliar user, the syntax they write will make little sense until they click the preview button. InscrybMDE has been designed to bridge this gap for non-technical users who are less familiar with or just learning Markdown syntax.
 
 ## Install
 
-Via [npm](https://www.npmjs.com/package/simplemde).
+Via [npm](https://www.npmjs.com/package/inscrybmde).
 ```
-npm install simplemde --save
+npm install inscrybmde --save
 ```
 
 Via [jsDelivr](https://www.jsdelivr.com/).
 
 ```HTML
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sparksuite/simplemde-markdown-editor@1/dist/simplemde.min.css">
-<script src="https://cdn.jsdelivr.net/gh/sparksuite/simplemde-markdown-editor@1/dist/simplemde.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/inscryb/inscrybmde-markdown-editor@1/dist/inscrybmde.min.css">
+<script src="https://cdn.jsdelivr.net/gh/inscryb/inscrybmde-markdown-editor@1/dist/inscrybmde.min.js"></script>
 ```
 
 ## Quick start
 
-After installing, load SimpleMDE on the first textarea on a page
+After installing, load InscrybMDE on the first textarea on a page
 
 ```HTML
 <script>
-var simplemde = new SimpleMDE();
+var inscrybmde = new InscrybMDE();
 </script>
 ```
 
@@ -38,7 +34,7 @@ Pure JavaScript method
 
 ```HTML
 <script>
-var simplemde = new SimpleMDE({ element: document.getElementById("MyID") });
+var inscrybmde = new InscrybMDE({ element: document.getElementById("MyID") });
 </script>
 ```
 
@@ -46,18 +42,18 @@ jQuery method
 
 ```HTML
 <script>
-var simplemde = new SimpleMDE({ element: $("#MyID")[0] });
+var inscrybmde = new InscrybMDE({ element: $("#MyID")[0] });
 </script>
 ```
 
 ## Get/set the content
 
 ```JavaScript
-simplemde.value();
+inscrybmde.value();
 ```
 
 ```JavaScript
-simplemde.value("This text will appear in the editor");
+inscrybmde.value("This text will appear in the editor");
 ```
 
 ## Configuration
@@ -67,13 +63,13 @@ simplemde.value("This text will appear in the editor");
 - **autosave**: *Saves the text that's being written and will load it back in the future. It will forget the text when the form it's contained in is submitted.*
   - **enabled**: If set to `true`, autosave the text. Defaults to `false`.
   - **delay**: Delay between saves, in milliseconds. Defaults to `10000` (10s).
-  - **uniqueId**: You must set a unique string identifier so that SimpleMDE can autosave. Something that separates this from other instances of SimpleMDE elsewhere on your website.
+  - **uniqueId**: You must set a unique string identifier so that InscrybMDE can autosave. Something that separates this from other instances of InscrybMDE elsewhere on your website.
 - **blockStyles**: Customize how certain buttons that style blocks of text behave.
   - **bold**: Can be set to `**` or `__`. Defaults to `**`.
   - **code**: Can be set to  ```` ``` ```` or `~~~`.  Defaults to ```` ``` ````.
   - **italic**: Can be set to `*` or `_`. Defaults to `*`.
 - **element**: The DOM element for the textarea to use. Defaults to the first textarea on the page.
-- **forceSync**: If set to `true`, force text changes made in SimpleMDE to be immediately stored in original textarea. Defaults to `false`.
+- **forceSync**: If set to `true`, force text changes made in InscrybMDE to be immediately stored in original textarea. Defaults to `false`.
 - **hideIcons**: An array of icon names to hide. Can be used to hide specific icons shown by default without completely customizing the toolbar.
 - **indentWithTabs**: If set to `false`, indent using spaces instead of tabs. Defaults to `true`.
 - **initialValue**: If set, will customize the initial value of the editor.
@@ -112,7 +108,7 @@ simplemde.value("This text will appear in the editor");
 
 ```JavaScript
 // Most options demonstrate the non-default behavior
-var simplemde = new SimpleMDE({
+var inscrybmde = new InscrybMDE({
 	autofocus: true,
 	autosave: {
 		enabled: true,
@@ -215,21 +211,21 @@ horizontal-rule | drawHorizontalRule | Insert Horizontal Line<br>fa fa-minus
 preview | togglePreview | Toggle Preview<br>fa fa-eye no-disable
 side-by-side | toggleSideBySide | Toggle Side by Side<br>fa fa-columns no-disable no-mobile
 fullscreen | toggleFullScreen | Toggle Fullscreen<br>fa fa-arrows-alt no-disable no-mobile
-guide | [This link](https://simplemde.com/markdown-guide) | Markdown Guide<br>fa fa-question-circle
+guide | [This link](https://inscrybmde.com/markdown-guide) | Markdown Guide<br>fa fa-question-circle
 
 Customize the toolbar using the `toolbar` option like:
 
 ```JavaScript
 // Customize only the order of existing buttons
-var simplemde = new SimpleMDE({
+var inscrybmde = new InscrybMDE({
 	toolbar: ["bold", "italic", "heading", "|", "quote"],
 });
 
 // Customize all information and/or add your own icons
-var simplemde = new SimpleMDE({
+var inscrybmde = new InscrybMDE({
 	toolbar: [{
 			name: "bold",
-			action: SimpleMDE.toggleBold,
+			action: InscrybMDE.toggleBold,
 			className: "fa fa-bold",
 			title: "Bold",
 		},
@@ -249,7 +245,7 @@ var simplemde = new SimpleMDE({
 
 #### Keyboard shortcuts
 
-SimpleMDE comes with an array of predefined keyboard shortcuts, but they can be altered with a configuration option. The list of default ones is as follows:
+InscrybMDE comes with an array of predefined keyboard shortcuts, but they can be altered with a configuration option. The list of default ones is as follows:
 
 Shortcut | Action
 :------- | :-----
@@ -271,7 +267,7 @@ Shortcut | Action
 Here is how you can change a few, while leaving others untouched:
 
 ```JavaScript
-var simplemde = new SimpleMDE({
+var inscrybmde = new InscrybMDE({
 	shortcuts: {
 		"toggleOrderedList": "Ctrl-Alt-K", // alter the shortcut for toggleOrderedList
 		"toggleCodeBlock": null, // unbind Ctrl-Alt-C
@@ -288,34 +284,34 @@ The list of actions that can be bound is the same as the list of built-in action
 You can catch the following list of events: https://codemirror.net/doc/manual.html#events
 
 ```JavaScript
-var simplemde = new SimpleMDE();
-simplemde.codemirror.on("change", function(){
-	console.log(simplemde.value());
+var inscrybmde = new InscrybMDE();
+inscrybmde.codemirror.on("change", function(){
+	console.log(inscrybmde.value());
 });
 ```
 
-## Removing SimpleMDE from textarea
-You can revert to the initial textarea by calling the `toTextArea` method. Note that this clears up the autosave (if enabled) associated with it. The textarea will retain any text from the destroyed SimpleMDE instance.
+## Removing InscrybMDE from textarea
+You can revert to the initial textarea by calling the `toTextArea` method. Note that this clears up the autosave (if enabled) associated with it. The textarea will retain any text from the destroyed InscrybMDE instance.
 
 ```JavaScript
-var simplemde = new SimpleMDE();
+var inscrybmde = new InscrybMDE();
 ...
-simplemde.toTextArea();
-simplemde = null;
+inscrybmde.toTextArea();
+inscrybmde = null;
 ```
 
 ## Useful methods
-The following self-explanatory methods may be of use while developing with SimpleMDE.
+The following self-explanatory methods may be of use while developing with InscrybMDE.
 
 ```js
-var simplemde = new SimpleMDE();
-simplemde.isPreviewActive(); // returns boolean
-simplemde.isSideBySideActive(); // returns boolean
-simplemde.isFullscreenActive(); // returns boolean
-simplemde.clearAutosavedValue(); // no returned value
+var inscrybmde = new InscrybMDE();
+inscrybmde.isPreviewActive(); // returns boolean
+inscrybmde.isSideBySideActive(); // returns boolean
+inscrybmde.isFullscreenActive(); // returns boolean
+inscrybmde.clearAutosavedValue(); // no returned value
 ```
 
 ## How it works
-SimpleMDE began as an improvement of [lepture's Editor project](https://github.com/lepture/editor), but has now taken on an identity of its own. It is bundled with [CodeMirror](https://github.com/codemirror/codemirror) and depends on [Font Awesome](http://fontawesome.io).
+InscrybMDE began as an improvement of [lepture's Editor project](https://github.com/lepture/editor), but has now taken on an identity of its own. It is bundled with [CodeMirror](https://github.com/codemirror/codemirror) and depends on [Font Awesome](http://fontawesome.io).
 
 CodeMirror is the backbone of the project and parses much of the Markdown syntax as it's being written. This allows us to add styles to the Markdown that's being written. Additionally, a toolbar and status bar have been added to the top and bottom, respectively. Previews are rendered by [Marked](https://github.com/chjj/marked) using GFM.
