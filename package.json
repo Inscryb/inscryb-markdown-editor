@@ -1,5 +1,5 @@
 {
-    "name": "inscryb-markdown-editor",
+    "name": "InscrybMDE",
     "version": "1.11.2",
     "description": "A simple, beautiful, and embeddable JavaScript Markdown editor. Based off SimpleMDE by Sparksuite.",
     "keywords": [
@@ -9,16 +9,16 @@
         "javascript",
         "fontawesome"
     ],
-    "main": "./src/js/simplemde.js",
+    "main": "./src/js/inscrybmde.js",
     "license": "MIT",
     "author": "Christopher Wharton",
     "bugs": {
         "url": "https://github.com/inscryb/inscryb-markdown-editor/issues"
     },
     "dependencies": {
-        "codemirror": "^5.32.0",
+        "codemirror": "^5.33.0",
         "codemirror-spell-checker": "^1.1.2",
-        "marked": "^0.3.7"
+        "marked": "^0.3.9"
     },
     "devDependencies": {
         "browserify": "^14.5.0",

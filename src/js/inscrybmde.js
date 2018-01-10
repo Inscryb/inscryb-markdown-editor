@@ -350,7 +350,7 @@ function toggleCodeBlock(editor) {
     var block_start, block_end, lineCount;
 
     if (is_code === 'single') {
-        // similar to some SimpleMDE _toggleBlock logic
+        // similar to some InscrybMDE _toggleBlock logic
         var start = line.text.slice(0, cur_start.ch).replace('`', ''),
             end = line.text.slice(cur_start.ch).replace('`', '');
         cm.replaceRange(start + end, {
@@ -1271,7 +1271,7 @@ var toolbarBuiltInButtons = {
     },
     'guide': {
         name: 'guide',
-        action: 'https://simplemde.com/markdown-guide',
+        action: 'https://docs.inscryb.com/editor/markdown-guide',
         className: 'fa fa-question-circle',
         noDisable: true,
         title: 'Markdown Guide',
@@ -1315,9 +1315,9 @@ var blockStyles = {
 };
 
 /**
- * Interface of SimpleMDE.
+ * Interface of InscrybMDE.
  */
-function SimpleMDE(options) {
+function InscrybMDE(options) {
     // Handle options parameter
     options = options || {};
 
@@ -1358,7 +1358,7 @@ function SimpleMDE(options) {
         this.element = options.element;
     } else if (options.element === null) {
         // This means that the element option was specified, but no element was found
-        console.log('SimpleMDE: Error. No element was found.');
+        console.log('InscrybMDE: Error. No element was found.');
         return;
     }
 
@@ -1447,7 +1447,7 @@ function SimpleMDE(options) {
 /**
  * Default markdown render.
  */
-SimpleMDE.prototype.markdown = function (text) {
+InscrybMDE.prototype.markdown = function (text) {
     if (marked) {
         // Initialize
         var markedOptions;
@@ -1490,7 +1490,7 @@ SimpleMDE.prototype.markdown = function (text) {
 /**
  * Render editor to the given element.
  */
-SimpleMDE.prototype.render = function (el) {
+InscrybMDE.prototype.render = function (el) {
     if (!el) {
         el = this.element || document.getElementsByTagName('textarea')[0];
     }
@@ -1613,18 +1613,18 @@ function isLocalStorageAvailable() {
     return true;
 }
 
-SimpleMDE.prototype.autosave = function () {
+InscrybMDE.prototype.autosave = function () {
     if (isLocalStorageAvailable()) {
-        var simplemde = this;
+        var inscrybmde = this;
 
         if (this.options.autosave.uniqueId == undefined || this.options.autosave.uniqueId == '') {
-            console.log('SimpleMDE: You must set a uniqueId to use the autosave feature');
+            console.log('InscrybMDE: You must set a uniqueId to use the autosave feature');
             return;
         }
 
-        if (simplemde.element.form != null && simplemde.element.form != undefined) {
-            simplemde.element.form.addEventListener('submit', function () {
-                localStorage.removeItem('smde_' + simplemde.options.autosave.uniqueId);
+        if (inscrybmde.element.form != null && inscrybmde.element.form != undefined) {
+            inscrybmde.element.form.addEventListener('submit', function () {
+                localStorage.removeItem('smde_' + inscrybmde.options.autosave.uniqueId);
             });
         }
 
@@ -1637,7 +1637,7 @@ SimpleMDE.prototype.autosave = function () {
             this.options.autosave.loaded = true;
         }
 
-        localStorage.setItem('smde_' + this.options.autosave.uniqueId, simplemde.value());
+        localStorage.setItem('smde_' + this.options.autosave.uniqueId, inscrybmde.value());
 
         var el = document.getElementById('autosaved');
         if (el != null && el != undefined && el != '') {
@@ -1659,27 +1659,27 @@ SimpleMDE.prototype.autosave = function () {
         }
 
         this.autosaveTimeoutId = setTimeout(function () {
-            simplemde.autosave();
+            inscrybmde.autosave();
         }, this.options.autosave.delay || 10000);
     } else {
-        console.log('SimpleMDE: localStorage not available, cannot autosave');
+        console.log('InscrybMDE: localStorage not available, cannot autosave');
     }
 };
 
-SimpleMDE.prototype.clearAutosavedValue = function () {
+InscrybMDE.prototype.clearAutosavedValue = function () {
     if (isLocalStorageAvailable()) {
         if (this.options.autosave == undefined || this.options.autosave.uniqueId == undefined || this.options.autosave.uniqueId == '') {
-            console.log('SimpleMDE: You must set a uniqueId to clear the autosave value');
+            console.log('InscrybMDE: You must set a uniqueId to clear the autosave value');
             return;
         }
 
         localStorage.removeItem('smde_' + this.options.autosave.uniqueId);
     } else {
-        console.log('SimpleMDE: localStorage not available, cannot autosave');
+        console.log('InscrybMDE: localStorage not available, cannot autosave');
     }
 };
 
-SimpleMDE.prototype.createSideBySide = function () {
+InscrybMDE.prototype.createSideBySide = function () {
     var cm = this.codemirror;
     var wrapper = cm.getWrapperElement();
     var preview = wrapper.nextSibling;
@@ -1721,7 +1721,7 @@ SimpleMDE.prototype.createSideBySide = function () {
     return preview;
 };
 
-SimpleMDE.prototype.createToolbar = function (items) {
+InscrybMDE.prototype.createToolbar = function (items) {
     items = items || this.options.toolbar;
 
     if (!items || items.length === 0) {
@@ -1822,7 +1822,7 @@ SimpleMDE.prototype.createToolbar = function (items) {
     return bar;
 };
 
-SimpleMDE.prototype.createStatusbar = function (status) {
+InscrybMDE.prototype.createStatusbar = function (status) {
     // Initialize
     status = status || this.options.status;
     var options = this.options;
@@ -1940,7 +1940,7 @@ SimpleMDE.prototype.createStatusbar = function (status) {
 /**
  * Get or set the text content.
  */
-SimpleMDE.prototype.value = function (val) {
+InscrybMDE.prototype.value = function (val) {
     var cm = this.codemirror;
     if (val === undefined) {
         return cm.getValue();
@@ -1959,100 +1959,100 @@ SimpleMDE.prototype.value = function (val) {
 /**
  * Bind static methods for exports.
  */
-SimpleMDE.toggleBold = toggleBold;
-SimpleMDE.toggleItalic = toggleItalic;
-SimpleMDE.toggleStrikethrough = toggleStrikethrough;
-SimpleMDE.toggleBlockquote = toggleBlockquote;
-SimpleMDE.toggleHeadingSmaller = toggleHeadingSmaller;
-SimpleMDE.toggleHeadingBigger = toggleHeadingBigger;
-SimpleMDE.toggleHeading1 = toggleHeading1;
-SimpleMDE.toggleHeading2 = toggleHeading2;
-SimpleMDE.toggleHeading3 = toggleHeading3;
-SimpleMDE.toggleCodeBlock = toggleCodeBlock;
-SimpleMDE.toggleUnorderedList = toggleUnorderedList;
-SimpleMDE.toggleOrderedList = toggleOrderedList;
-SimpleMDE.cleanBlock = cleanBlock;
-SimpleMDE.drawLink = drawLink;
-SimpleMDE.drawImage = drawImage;
-SimpleMDE.drawTable = drawTable;
-SimpleMDE.drawHorizontalRule = drawHorizontalRule;
-SimpleMDE.undo = undo;
-SimpleMDE.redo = redo;
-SimpleMDE.togglePreview = togglePreview;
-SimpleMDE.toggleSideBySide = toggleSideBySide;
-SimpleMDE.toggleFullScreen = toggleFullScreen;
+InscrybMDE.toggleBold = toggleBold;
+InscrybMDE.toggleItalic = toggleItalic;
+InscrybMDE.toggleStrikethrough = toggleStrikethrough;
+InscrybMDE.toggleBlockquote = toggleBlockquote;
+InscrybMDE.toggleHeadingSmaller = toggleHeadingSmaller;
+InscrybMDE.toggleHeadingBigger = toggleHeadingBigger;
+InscrybMDE.toggleHeading1 = toggleHeading1;
+InscrybMDE.toggleHeading2 = toggleHeading2;
+InscrybMDE.toggleHeading3 = toggleHeading3;
+InscrybMDE.toggleCodeBlock = toggleCodeBlock;
+InscrybMDE.toggleUnorderedList = toggleUnorderedList;
+InscrybMDE.toggleOrderedList = toggleOrderedList;
+InscrybMDE.cleanBlock = cleanBlock;
+InscrybMDE.drawLink = drawLink;
+InscrybMDE.drawImage = drawImage;
+InscrybMDE.drawTable = drawTable;
+InscrybMDE.drawHorizontalRule = drawHorizontalRule;
+InscrybMDE.undo = undo;
+InscrybMDE.redo = redo;
+InscrybMDE.togglePreview = togglePreview;
+InscrybMDE.toggleSideBySide = toggleSideBySide;
+InscrybMDE.toggleFullScreen = toggleFullScreen;
 
 /**
  * Bind instance methods for exports.
  */
-SimpleMDE.prototype.toggleBold = function () {
+InscrybMDE.prototype.toggleBold = function () {
     toggleBold(this);
 };
-SimpleMDE.prototype.toggleItalic = function () {
+InscrybMDE.prototype.toggleItalic = function () {
     toggleItalic(this);
 };
-SimpleMDE.prototype.toggleStrikethrough = function () {
+InscrybMDE.prototype.toggleStrikethrough = function () {
     toggleStrikethrough(this);
 };
-SimpleMDE.prototype.toggleBlockquote = function () {
+InscrybMDE.prototype.toggleBlockquote = function () {
     toggleBlockquote(this);
 };
-SimpleMDE.prototype.toggleHeadingSmaller = function () {
+InscrybMDE.prototype.toggleHeadingSmaller = function () {
     toggleHeadingSmaller(this);
 };
-SimpleMDE.prototype.toggleHeadingBigger = function () {
+InscrybMDE.prototype.toggleHeadingBigger = function () {
     toggleHeadingBigger(this);
 };
-SimpleMDE.prototype.toggleHeading1 = function () {
+InscrybMDE.prototype.toggleHeading1 = function () {
     toggleHeading1(this);
 };
-SimpleMDE.prototype.toggleHeading2 = function () {
+InscrybMDE.prototype.toggleHeading2 = function () {
     toggleHeading2(this);
 };
-SimpleMDE.prototype.toggleHeading3 = function () {
+InscrybMDE.prototype.toggleHeading3 = function () {
     toggleHeading3(this);
 };
-SimpleMDE.prototype.toggleCodeBlock = function () {
+InscrybMDE.prototype.toggleCodeBlock = function () {
     toggleCodeBlock(this);
 };
-SimpleMDE.prototype.toggleUnorderedList = function () {
+InscrybMDE.prototype.toggleUnorderedList = function () {
     toggleUnorderedList(this);
 };
-SimpleMDE.prototype.toggleOrderedList = function () {
+InscrybMDE.prototype.toggleOrderedList = function () {
     toggleOrderedList(this);
 };
-SimpleMDE.prototype.cleanBlock = function () {
+InscrybMDE.prototype.cleanBlock = function () {
     cleanBlock(this);
 };
-SimpleMDE.prototype.drawLink = function () {
+InscrybMDE.prototype.drawLink = function () {
     drawLink(this);
 };
-SimpleMDE.prototype.drawImage = function () {
+InscrybMDE.prototype.drawImage = function () {
     drawImage(this);
 };
-SimpleMDE.prototype.drawTable = function () {
+InscrybMDE.prototype.drawTable = function () {
     drawTable(this);
 };
-SimpleMDE.prototype.drawHorizontalRule = function () {
+InscrybMDE.prototype.drawHorizontalRule = function () {
     drawHorizontalRule(this);
 };
-SimpleMDE.prototype.undo = function () {
+InscrybMDE.prototype.undo = function () {
     undo(this);
 };
-SimpleMDE.prototype.redo = function () {
+InscrybMDE.prototype.redo = function () {
     redo(this);
 };
-SimpleMDE.prototype.togglePreview = function () {
+InscrybMDE.prototype.togglePreview = function () {
     togglePreview(this);
 };
-SimpleMDE.prototype.toggleSideBySide = function () {
+InscrybMDE.prototype.toggleSideBySide = function () {
     toggleSideBySide(this);
 };
-SimpleMDE.prototype.toggleFullScreen = function () {
+InscrybMDE.prototype.toggleFullScreen = function () {
     toggleFullScreen(this);
 };
 
-SimpleMDE.prototype.isPreviewActive = function () {
+InscrybMDE.prototype.isPreviewActive = function () {
     var cm = this.codemirror;
     var wrapper = cm.getWrapperElement();
     var preview = wrapper.lastChild;
@@ -2060,7 +2060,7 @@ SimpleMDE.prototype.isPreviewActive = function () {
     return /editor-preview-active/.test(preview.className);
 };
 
-SimpleMDE.prototype.isSideBySideActive = function () {
+InscrybMDE.prototype.isSideBySideActive = function () {
     var cm = this.codemirror;
     var wrapper = cm.getWrapperElement();
     var preview = wrapper.nextSibling;
@@ -2068,19 +2068,19 @@ SimpleMDE.prototype.isSideBySideActive = function () {
     return /editor-preview-active-side/.test(preview.className);
 };
 
-SimpleMDE.prototype.isFullscreenActive = function () {
+InscrybMDE.prototype.isFullscreenActive = function () {
     var cm = this.codemirror;
 
     return cm.getOption('fullScreen');
 };
 
-SimpleMDE.prototype.getState = function () {
+InscrybMDE.prototype.getState = function () {
     var cm = this.codemirror;
 
     return getState(cm);
 };
 
-SimpleMDE.prototype.toTextArea = function () {
+InscrybMDE.prototype.toTextArea = function () {
     var cm = this.codemirror;
     var wrapper = cm.getWrapperElement();
 
@@ -2105,4 +2105,4 @@ SimpleMDE.prototype.toTextArea = function () {
     }
 };
 
-module.exports = SimpleMDE;
+module.exports = InscrybMDE;
