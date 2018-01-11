@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Inscryb/inscryb-markdown-editor.svg?branch=development)](https://travis-ci.org/Inscryb/inscryb-markdown-editor)
+
 # InscrybMDE - Markdown Editor
 A drop-in JavaScript textarea replacement for writing beautiful and understandable Markdown. The WYSIWYG-esque editor allows users who may be less experienced with Markdown to use familiar toolbar buttons and shortcuts. In addition, the syntax is rendered while editing to clearly show the expected result. Headings are larger, emphasized words are italicized, links are underlined, etc. InscrybMDE is one of the first editors to feature both built-in autosaving and spell checking.
 
