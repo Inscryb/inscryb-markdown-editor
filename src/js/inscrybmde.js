@@ -1157,19 +1157,19 @@ var toolbarBuiltInButtons = {
     'heading-1': {
         name: 'heading-1',
         action: toggleHeading1,
-        className: 'fa fa-header fa-header-x fa-header-1',
+        className: 'fa fa-header fa-header-x fa-header-1 fa-h1',
         title: 'Big Heading'
     },
     'heading-2': {
         name: 'heading-2',
         action: toggleHeading2,
-        className: 'fa fa-header fa-header-x fa-header-2',
+        className: 'fa fa-header fa-header-x fa-header-2 fa-h2',
         title: 'Medium Heading'
     },
     'heading-3': {
         name: 'heading-3',
         action: toggleHeading3,
-        className: 'fa fa-header fa-header-x fa-header-3',
+        className: 'fa fa-header fa-header-x fa-header-3 fa-h3',
         title: 'Small Heading'
     },
     'separator-1': {

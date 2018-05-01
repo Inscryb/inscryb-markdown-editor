@@ -16,8 +16,8 @@ npm install inscrybmde --save
 Via [jsDelivr](https://www.jsdelivr.com/).
 
 ```HTML
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/inscryb/inscrybmde-markdown-editor@1/dist/inscrybmde.min.css">
-<script src="https://cdn.jsdelivr.net/gh/inscryb/inscrybmde-markdown-editor@1/dist/inscrybmde.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/inscrybmde@1.11.3/dist/inscrybmde.min.css">
+<script src="https://cdn.jsdelivr.net/npm/inscrybmde@1.11.3/dist/inscrybmde.min.js"></script>
 ```
 
 ## Quick start
@@ -26,7 +26,7 @@ After installing, load InscrybMDE on the first textarea on a page
 
 ```HTML
 <script>
-var inscrybmde = new InscrybMDE();
+   var inscrybmde = new InscrybMDE();
 </script>
 ```
 
@@ -36,7 +36,7 @@ Pure JavaScript method
 
 ```HTML
 <script>
-var inscrybmde = new InscrybMDE({ element: document.getElementById("MyID") });
+   var inscrybmde = new InscrybMDE({ element: document.getElementById("MyID") });
 </script>
 ```
 
@@ -44,7 +44,7 @@ jQuery method
 
 ```HTML
 <script>
-var inscrybmde = new InscrybMDE({ element: $("#MyID")[0] });
+   var inscrybmde = new InscrybMDE({ element: $("#MyID")[0] });
 </script>
 ```
 
@@ -313,7 +313,7 @@ inscrybmde.isFullscreenActive(); // returns boolean
 inscrybmde.clearAutosavedValue(); // no returned value
 ```
 
-## How it works
-InscrybMDE began as an improvement of [lepture's Editor project](https://github.com/lepture/editor), but has now taken on an identity of its own. It is bundled with [CodeMirror](https://github.com/codemirror/codemirror) and depends on [Font Awesome](http://fontawesome.io).
+## What is InscrybMDE?
+InscrybMDE is a fork of [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor). It is bundled with [CodeMirror](https://github.com/codemirror/codemirror) and depends on [Font Awesome](http://fontawesome.io).
 
 CodeMirror is the backbone of the project and parses much of the Markdown syntax as it's being written. This allows us to add styles to the Markdown that's being written. Additionally, a toolbar and status bar have been added to the top and bottom, respectively. Previews are rendered by [Marked](https://github.com/chjj/marked) using GFM.
