@@ -1639,6 +1639,9 @@ InscrybMDE.prototype.autosave = function () {
 
         localStorage.setItem('smde_' + this.options.autosave.uniqueId, inscrybmde.value());
 
+        if (typeof this.options.autosave.callback === 'function')
+            this.options.autosave.callback.call(this);
+
         var el = document.getElementById('autosaved');
         if (el != null && el != undefined && el != '') {
             var d = new Date();
