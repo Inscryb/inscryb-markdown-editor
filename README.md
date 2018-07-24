@@ -66,6 +66,7 @@ inscrybmde.value("This text will appear in the editor");
   - **enabled**: If set to `true`, autosave the text. Defaults to `false`.
   - **delay**: Delay between saves, in milliseconds. Defaults to `10000` (10s).
   - **uniqueId**: You must set a unique string identifier so that InscrybMDE can autosave. Something that separates this from other instances of InscrybMDE elsewhere on your website.
+  - **callback**: Set a funcion to be called after autosaving text.
 - **blockStyles**: Customize how certain buttons that style blocks of text behave.
   - **bold**: Can be set to `**` or `__`. Defaults to `**`.
   - **code**: Can be set to  ```` ``` ```` or `~~~`.  Defaults to ```` ``` ````.
