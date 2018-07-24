@@ -26,7 +26,7 @@ After installing, load InscrybMDE on the first textarea on a page
 
 ```HTML
 <script>
-var inscrybmde = new InscrybMDE();
+   var inscrybmde = new InscrybMDE();
 </script>
 ```
 
@@ -36,7 +36,7 @@ Pure JavaScript method
 
 ```HTML
 <script>
-var inscrybmde = new InscrybMDE({ element: document.getElementById("MyID") });
+   var inscrybmde = new InscrybMDE({ element: document.getElementById("MyID") });
 </script>
 ```
 
@@ -44,7 +44,7 @@ jQuery method
 
 ```HTML
 <script>
-var inscrybmde = new InscrybMDE({ element: $("#MyID")[0] });
+   var inscrybmde = new InscrybMDE({ element: $("#MyID")[0] });
 </script>
 ```
 
@@ -66,6 +66,7 @@ inscrybmde.value("This text will appear in the editor");
   - **enabled**: If set to `true`, autosave the text. Defaults to `false`.
   - **delay**: Delay between saves, in milliseconds. Defaults to `10000` (10s).
   - **uniqueId**: You must set a unique string identifier so that InscrybMDE can autosave. Something that separates this from other instances of InscrybMDE elsewhere on your website.
+  - **callback**: Set a funcion to be called after autosaving text.
 - **blockStyles**: Customize how certain buttons that style blocks of text behave.
   - **bold**: Can be set to `**` or `__`. Defaults to `**`.
   - **code**: Can be set to  ```` ``` ```` or `~~~`.  Defaults to ```` ``` ````.
@@ -313,7 +314,7 @@ inscrybmde.isFullscreenActive(); // returns boolean
 inscrybmde.clearAutosavedValue(); // no returned value
 ```
 
-## How it works
-InscrybMDE began as an improvement of [lepture's Editor project](https://github.com/lepture/editor), but has now taken on an identity of its own. It is bundled with [CodeMirror](https://github.com/codemirror/codemirror) and depends on [Font Awesome](http://fontawesome.io).
+## What is InscrybMDE?
+InscrybMDE is a fork of [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor). It is bundled with [CodeMirror](https://github.com/codemirror/codemirror) and depends on [Font Awesome](http://fontawesome.io).
 
 CodeMirror is the backbone of the project and parses much of the Markdown syntax as it's being written. This allows us to add styles to the Markdown that's being written. Additionally, a toolbar and status bar have been added to the top and bottom, respectively. Previews are rendered by [Marked](https://github.com/chjj/marked) using GFM.
