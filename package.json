@@ -1,6 +1,6 @@
 {
     "name": "inscrybmde",
-    "version": "1.11.3",
+    "version": "1.11.4",
     "description": "A simple, beautiful, and embeddable JavaScript Markdown editor. Based off SimpleMDE by Sparksuite.",
     "keywords": [
         "embeddable",
