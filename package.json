@@ -10,6 +10,7 @@
         "fontawesome"
     ],
     "main": "./src/js/inscrybmde.js",
+    "types": "./src/ts/inscrybmde.d.ts",
     "license": "MIT",
     "author": "Christopher Wharton",
     "bugs": {
