@@ -1562,6 +1562,7 @@ InscrybMDE.prototype.render = function (el) {
         allowDropFileTypes: ['text/plain'],
         placeholder: options.placeholder || el.getAttribute('placeholder') || '',
         styleSelectedText: (options.styleSelectedText != undefined) ? options.styleSelectedText : !isMobile(),
+        inputStyle: (options.inputStyle != undefined) ? options.inputStyle : isMobile() ? 'contenteditable' : 'textarea',
     });
 
     this.codemirror.getScrollerElement().style.minHeight = options.minHeight;
