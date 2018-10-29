@@ -1271,7 +1271,7 @@ var toolbarBuiltInButtons = {
     },
     'guide': {
         name: 'guide',
-        action: 'https://docs.inscryb.com/editor/markdown-guide',
+        action: 'https://www.inscryb.com/InscrybMDE/markdown-guide/',
         className: 'fa fa-question-circle',
         noDisable: true,
         title: 'Markdown Guide',
