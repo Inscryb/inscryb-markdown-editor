@@ -1,6 +1,6 @@
 {
     "name": "inscrybmde",
-    "version": "1.11.5",
+    "version": "1.11.6",
     "description": "A simple, beautiful, and embeddable JavaScript Markdown editor. Based off SimpleMDE by Sparksuite.",
     "keywords": [
         "embeddable",
@@ -19,19 +19,19 @@
     "dependencies": {
         "codemirror": "^5.33.0",
         "codemirror-spell-checker": "^1.1.2",
-        "marked": "^0.3.9"
+        "marked": "^0.5.1"
     },
     "devDependencies": {
-        "browserify": "^14.5.0",
+        "browserify": "^16.2.3",
         "gulp": "^3.9.1",
-        "gulp-clean-css": "^3.9.0",
+        "gulp-clean-css": "^3.10.0",
         "gulp-concat": "^2.6.1",
-        "gulp-eslint": "^4.0.0",
-        "gulp-header": "^1.8.9",
-        "gulp-rename": "^1.2.2",
-        "gulp-uglify": "^3.0.0",
+        "gulp-eslint": "^5.0.0",
+        "gulp-header": "^2.0.5",
+        "gulp-rename": "^1.4.0",
+        "gulp-uglify": "^3.0.1",
         "vinyl-buffer": "^1.0.0",
-        "vinyl-source-stream": "^1.1.0"
+        "vinyl-source-stream": "^2.0.0"
     },
     "repository": {
         "type": "git",
