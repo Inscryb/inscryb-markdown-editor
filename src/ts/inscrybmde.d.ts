@@ -99,6 +99,7 @@ declare class InscrybMDE {
     value(val: string): void;
     codemirror: any;
     toTextArea(): void;
+    toEditor(): void;
     isPreviewActive(): boolean;
     isSideBySideActive(): boolean;
     isFullscreenActive(): boolean;
