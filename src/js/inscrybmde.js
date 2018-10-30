@@ -94,7 +94,7 @@ function fixShortcut(name) {
 /**
  * Create icon element for toolbar.
  */
-function createIcon(options, enableTooltips, shortcuts) {
+function createIcon(options, enableTooltips, shortcuts, negativeTabIndex) {
     options = options || {};
     var el = document.createElement('button');
     enableTooltips = (enableTooltips == undefined) ? true : enableTooltips;
@@ -116,7 +116,7 @@ function createIcon(options, enableTooltips, shortcuts) {
         el.classList.add('no-mobile');
     }
 
-    el.tabIndex = -1;
+    el.tabIndex = negativeTabIndex? -1 : 0;
 
     // Create icon element and append as a child to the button
     var icon = document.createElement('i');
@@ -1422,6 +1422,7 @@ function InscrybMDE(options) {
 
     options.minHeight = options.minHeight || '300px';
 
+    options.negativeTabIndex = options.negativeTabIndex || false;
 
     // Change unique_id to uniqueId for backwards compatibility
     if (options.autosave != undefined && options.autosave.unique_id != undefined && options.autosave.unique_id != '')
@@ -1780,7 +1781,7 @@ InscrybMDE.prototype.createToolbar = function (items) {
             if (item === '|') {
                 el = createSep();
             } else {
-                el = createIcon(item, self.options.toolbarTips, self.options.shortcuts);
+                el = createIcon(item, self.options.toolbarTips, self.options.shortcuts, self.options.negativeTabIndex);
             }
 
             // bind events, special for info

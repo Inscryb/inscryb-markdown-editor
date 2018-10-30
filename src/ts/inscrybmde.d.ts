@@ -76,6 +76,7 @@ declare namespace InscrybMDE {
         initialValue?: string;
         insertTexts?: InsertTextOptions;
         lineWrapping?: boolean;
+        negativeTabIndex?: boolean;
         parsingConfig?: ParsingOptions;
         placeholder?: string;
         previewRender?: (markdownPlaintext: string, previewElement?: HTMLElement) => string;
