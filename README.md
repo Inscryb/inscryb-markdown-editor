@@ -320,7 +320,7 @@ inscrybmde.toEditor();
 `toTextArea` and `toEditor` can be used to create a checkbox switch for the user to toggle between the InscrybMDE editor and a stzandard textarea. Example:
 
 JQuery example:
-```HTNL
+```HTML
     <input type="checkbox" id="extendedEditor" name="extendedEditor"/>
 ```
 ```JavaScript
