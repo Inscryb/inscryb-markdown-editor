@@ -62,6 +62,7 @@ inscrybmde.value("This text will appear in the editor");
 
 - **autoDownloadFontAwesome**: If set to `true`, force downloads Font Awesome (used for icons). If set to `false`, prevents downloading. Defaults to `undefined`, which will intelligently check whether Font Awesome has already been included, then download accordingly.
 - **autofocus**: If set to `true`, autofocuses the editor. Defaults to `false`.
+- **autoRender**: If set to `true`, the editor will be active right away. Otherwise it starts as a normal textarea and has to be activated with "toEditor". Defaults to `true`.
 - **autosave**: *Saves the text that's being written and will load it back in the future. It will forget the text when the form it's contained in is submitted.*
   - **enabled**: If set to `true`, autosave the text. Defaults to `false`.
   - **delay**: Delay between saves, in milliseconds. Defaults to `10000` (10s).
@@ -76,6 +77,7 @@ inscrybmde.value("This text will appear in the editor");
 - **hideIcons**: An array of icon names to hide. Can be used to hide specific icons shown by default without completely customizing the toolbar.
 - **indentWithTabs**: If set to `false`, indent using spaces instead of tabs. Defaults to `true`.
 - **initialValue**: If set, will customize the initial value of the editor.
+- **inputStyle**: Either 'textarea' or 'contenteditable'. See CodeMirror manual for details.
 - **insertTexts**: Customize how certain buttons that insert text behave. Takes an array with two elements. The first element will be the text inserted before the cursor or highlight, and the second element will be inserted after. For example, this is the default link value: `["[", "](http://)"]`.
   - horizontalRule
   - image
@@ -296,13 +298,53 @@ inscrybmde.codemirror.on("change", function(){
 
 ## Removing InscrybMDE from textarea
 You can revert to the initial textarea by calling the `toTextArea` method. Note that this clears up the autosave (if enabled) associated with it. The textarea will retain any text from the destroyed InscrybMDE instance.
-
 ```JavaScript
 var inscrybmde = new InscrybMDE();
 ...
 inscrybmde.toTextArea();
 inscrybmde = null;
 ```
+
+## Reactivating InscrybMDE 
+Once you reverted to the initial textarea you can reactivate InscrybMDE with the `toEditor` method. 
+This is also useful if the `autoRender` option is set to false to activate the editor in the first place. 
+InscrybMDE will retain any text from the textarea.
+
+```JavaScript
+var inscrybmde = new InscrybMDE();
+...
+inscrybmde.toTextArea();
+...
+inscrybmde.toEditor();
+```
+`toTextArea` and `toEditor` can be used to create a checkbox switch for the user to toggle between the InscrybMDE editor and a stzandard textarea. Example:
+
+JQuery example:
+```HTNL
+    <input type="checkbox" id="extendedEditor" name="extendedEditor"/>
+```
+```JavaScript
+    var showExtendedEditor = localStorage.getItem("showExtendedEditor");
+    if(showExtendedEditor === undefined)
+        showExtendedEditor = "1";
+
+    $('#extendedEditor').prop("checked", showExtendedEditor === "1");
+
+    $('#extendedEditor').change(function(e){
+        var sel = $(e.target).is(":checked");
+        if(sel) {
+            inscrybmde.toEditor();
+            showExtendedEditor = "1"
+        }
+        else {
+            inscrybmde.toTextArea();
+            showExtendedEditor = "0"
+        }
+        localStorage.setItem("showExtendedEditor",showExtendedEditor)
+    })
+```
+
+  
 
 ## Useful methods
 The following self-explanatory methods may be of use while developing with InscrybMDE.
