@@ -1,3 +1,7 @@
+**Latest**
+- Added the ability to switch between a textarea and the full editor
+- Add option to set a negative tab index on toolbar icons
+
 **1.11.6**
 - Updated to codemirror v5.41.0
 - Updated marked v0.5.1
