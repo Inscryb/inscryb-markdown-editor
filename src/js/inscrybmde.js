@@ -2074,6 +2074,11 @@ InscrybMDE.prototype.toggleFullScreen = function () {
     toggleFullScreen(this);
 };
 
+InscrybMDE.prototype.wordCount = function () {
+    var cm = this.codemirror;
+    return wordCount(cm.getValue());
+};
+
 InscrybMDE.prototype.isPreviewActive = function () {
     var cm = this.codemirror;
     var wrapper = cm.getWrapperElement();
