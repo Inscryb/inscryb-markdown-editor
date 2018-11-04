@@ -307,8 +307,8 @@ inscrybmde = null;
 
 ## Reactivating InscrybMDE 
 Once you reverted to the initial textarea you can reactivate InscrybMDE with the `toEditor` method. 
-This is also useful if the `autoRender` option is set to false to activate the editor in the first place. 
-InscrybMDE will retain any text from the textarea.
+This is also useful if the `autoRender` option is set to false to not activate the editor when instantiating InscrybMDE. 
+InscrybMDE will retain the contents of the textarea.
 
 ```JavaScript
 var inscrybmde = new InscrybMDE();
@@ -317,7 +317,7 @@ inscrybmde.toTextArea();
 ...
 inscrybmde.toEditor();
 ```
-`toTextArea` and `toEditor` can be used to create a checkbox switch for the user to toggle between the InscrybMDE editor and a stzandard textarea. Example:
+`toTextArea` and `toEditor` can be used to create a checkbox toggle for the user to toggle between the InscrybMDE editor and a stzandard textarea. Example:
 
 JQuery example:
 ```HTML
@@ -334,13 +334,13 @@ JQuery example:
         var sel = $(e.target).is(":checked");
         if(sel) {
             inscrybmde.toEditor();
-            showExtendedEditor = "1"
+            showExtendedEditor = "1";
         }
         else {
             inscrybmde.toTextArea();
-            showExtendedEditor = "0"
+            showExtendedEditor = "0";
         }
-        localStorage.setItem("showExtendedEditor",showExtendedEditor)
+        localStorage.setItem("showExtendedEditor",showExtendedEditor);
     })
 ```
 
