@@ -3357,7 +3357,7 @@ v8flags@^2.0.2:
   dependencies:
     user-home "^1.1.1"
 
-vinyl-buffer@^1.0.0:
+vinyl-buffer@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/vinyl-buffer/-/vinyl-buffer-1.0.1.tgz#96c1a3479b8c5392542c612029013b5b27f88bbf"
   integrity sha1-lsGjR5uMU5JULGEgKQE7Wyf4i78=
