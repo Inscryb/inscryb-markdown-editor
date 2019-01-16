@@ -587,7 +587,7 @@ codemirror-spell-checker@^1.1.2:
   dependencies:
     typo-js "*"
 
-codemirror@^5.33.0:
+codemirror@^5.41.0:
   version "5.41.0"
   resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.41.0.tgz#57e245be197643c39440d2840236d3edc4bb1162"
   integrity sha512-mkCwbneCx2WHg1MNCYrI+8Zuq0KMMaZ5yTFpQlAZazy3yxME8bHcuSc9WUFzgPZ114WqWu1FIHlx8CavLzBDIg==
@@ -3357,7 +3357,7 @@ v8flags@^2.0.2:
   dependencies:
     user-home "^1.1.1"
 
-vinyl-buffer@^1.0.0:
+vinyl-buffer@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/vinyl-buffer/-/vinyl-buffer-1.0.1.tgz#96c1a3479b8c5392542c612029013b5b27f88bbf"
   integrity sha1-lsGjR5uMU5JULGEgKQE7Wyf4i78=

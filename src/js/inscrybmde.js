@@ -94,7 +94,7 @@ function fixShortcut(name) {
 /**
  * Create icon element for toolbar.
  */
-function createIcon(options, enableTooltips, shortcuts) {
+function createIcon(options, enableTooltips, shortcuts, negativeTabIndex) {
     options = options || {};
     var el = document.createElement('button');
     enableTooltips = (enableTooltips == undefined) ? true : enableTooltips;
@@ -121,7 +121,7 @@ function createIcon(options, enableTooltips, shortcuts) {
         el.classList.add('no-mobile');
     }
 
-    el.tabIndex = -1;
+    el.tabIndex = negativeTabIndex? -1 : 0;
 
     // Create icon element and append as a child to the button
     var icon = document.createElement('i');
@@ -1427,6 +1427,7 @@ function InscrybMDE(options) {
 
     options.minHeight = options.minHeight || '300px';
 
+    options.negativeTabIndex = options.negativeTabIndex || false;
 
     // Change unique_id to uniqueId for backwards compatibility
     if (options.autosave != undefined && options.autosave.unique_id != undefined && options.autosave.unique_id != '')
@@ -1438,14 +1439,26 @@ function InscrybMDE(options) {
 
 
     // Auto render
-    this.render();
+    var autoRender = true;
+    if (options.autoRender === false) {
+        autoRender = false;
+    }
 
+    if(autoRender) {
+        this.render();
 
-    // The codemirror component is only available after rendering
-    // so, the setter for the initialValue can only run after
-    // the element has been rendered
-    if (options.initialValue && (!this.options.autosave || this.options.autosave.foundSavedValue !== true)) {
-        this.value(options.initialValue);
+        // The codemirror component is only available after rendering
+        // so, the setter for the initialValue can only run after
+        // the element has been rendered
+        if (options.initialValue && (!this.options.autosave || this.options.autosave.foundSavedValue !== true)) {
+            this.value(options.initialValue);
+        }
+    }
+    else {
+        if (options.initialValue) {
+            // Set value of standard text area
+            this.element.value = options.initialValue;
+        }
     }
 }
 
@@ -1500,8 +1513,8 @@ InscrybMDE.prototype.render = function (el) {
         el = this.element || document.getElementsByTagName('textarea')[0];
     }
 
-    if (this._rendered && this._rendered === el) {
-        // Already rendered.
+    if (this.codemirror != undefined) {
+        // Already rendered and active
         return;
     }
 
@@ -1579,13 +1592,22 @@ InscrybMDE.prototype.render = function (el) {
         });
     }
 
-    this.gui = {};
+    if(this.gui == undefined)
+        this.gui = {};
 
+    var cmWrapper = this.codemirror.getWrapperElement();
     if (options.toolbar !== false) {
-        this.gui.toolbar = this.createToolbar();
+        if(this.gui.toolbar == undefined)
+            this.gui.toolbar = this.createToolbar();
+
+        cmWrapper.parentNode.insertBefore(this.gui.toolbar, cmWrapper);
     }
+
     if (options.status !== false) {
-        this.gui.statusbar = this.createStatusbar();
+        if(this.gui.statusbar == undefined)
+            this.gui.statusbar = this.createStatusbar();
+
+        cmWrapper.parentNode.insertBefore(this.gui.statusbar, cmWrapper.nextSibling);
     }
     if (options.autosave != undefined && options.autosave.enabled === true) {
         this.autosave();
@@ -1785,7 +1807,7 @@ InscrybMDE.prototype.createToolbar = function (items) {
             if (item === '|') {
                 el = createSep();
             } else {
-                el = createIcon(item, self.options.toolbarTips, self.options.shortcuts);
+                el = createIcon(item, self.options.toolbarTips, self.options.shortcuts, self.options.negativeTabIndex);
             }
 
             // bind events, special for info
@@ -1826,8 +1848,6 @@ InscrybMDE.prototype.createToolbar = function (items) {
         }
     });
 
-    var cmWrapper = cm.getWrapperElement();
-    cmWrapper.parentNode.insertBefore(bar, cmWrapper);
     return bar;
 };
 
@@ -1941,8 +1961,6 @@ InscrybMDE.prototype.createStatusbar = function (status) {
 
 
     // Insert the status bar into the DOM
-    var cmWrapper = this.codemirror.getWrapperElement();
-    cmWrapper.parentNode.insertBefore(bar, cmWrapper.nextSibling);
     return bar;
 };
 
@@ -2061,6 +2079,11 @@ InscrybMDE.prototype.toggleFullScreen = function () {
     toggleFullScreen(this);
 };
 
+InscrybMDE.prototype.wordCount = function () {
+    var cm = this.codemirror;
+    return wordCount(cm.getValue());
+};
+
 InscrybMDE.prototype.isPreviewActive = function () {
     var cm = this.codemirror;
     var wrapper = cm.getWrapperElement();
@@ -2107,11 +2130,17 @@ InscrybMDE.prototype.toTextArea = function () {
 
     cm.toTextArea();
 
+    this.codemirror = undefined;
+
     if (this.autosaveTimeoutId) {
         clearTimeout(this.autosaveTimeoutId);
         this.autosaveTimeoutId = undefined;
         this.clearAutosavedValue();
     }
+};
+
+InscrybMDE.prototype.toEditor = function () {
+    this.render();
 };
 
 module.exports = InscrybMDE;

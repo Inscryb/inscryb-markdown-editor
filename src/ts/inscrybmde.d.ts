@@ -76,6 +76,7 @@ declare namespace InscrybMDE {
         initialValue?: string;
         insertTexts?: InsertTextOptions;
         lineWrapping?: boolean;
+        negativeTabIndex?: boolean;
         parsingConfig?: ParsingOptions;
         placeholder?: string;
         previewRender?: (markdownPlaintext: string, previewElement?: HTMLElement) => string;
@@ -99,6 +100,7 @@ declare class InscrybMDE {
     value(val: string): void;
     codemirror: any;
     toTextArea(): void;
+    toEditor(): void;
     isPreviewActive(): boolean;
     isSideBySideActive(): boolean;
     isFullscreenActive(): boolean;
