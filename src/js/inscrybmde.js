@@ -98,7 +98,12 @@ function createIcon(options, enableTooltips, shortcuts, negativeTabIndex) {
     options = options || {};
     var el = document.createElement('button');
     enableTooltips = (enableTooltips == undefined) ? true : enableTooltips;
-
+	
+	// Properly hande custom shortcuts
+	if( options.name && options.name in shortcuts ){
+		bindings[options.name] = options.action;
+	}
+	
     if (options.title && enableTooltips) {
         el.title = createTooltip(options.title, options.action, shortcuts);
 
@@ -122,7 +127,7 @@ function createIcon(options, enableTooltips, shortcuts, negativeTabIndex) {
     var icon = document.createElement('i');
     icon.className = options.className;
     el.appendChild(icon);
-
+	
     return el;
 }
 
